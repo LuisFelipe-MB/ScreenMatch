@@ -1,64 +1,78 @@
 package br.com.alura.screenmatch.modelos;
 
-public class Titulo {
-    private String name;
-    private int releaseYear;
-    private boolean includedInPlan;
-    private double sumOfEvaluations; //Atalho para troca de nome "Shift + F6"
-    private int totalEvaluations;
-    private int durationInMinutes;
+public class Titulo implements Comparable<Titulo>{
+    private String nome;
+    private int anoDeLancamento;
+    private boolean incluidoNoPlano;
+    private double somaDasAvalicoes; //Atalho para troca de nome "Shift + F6"
+    private int totalDeAvaliacao;
+    private int duracaoEmMinutos;
 
-    public String getName() {
-        return name;
+    public Titulo(String nome, int anoDeLancamento) {
+        this.nome = nome;
+        this.anoDeLancamento = anoDeLancamento;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getNome() {
+        return nome;
     }
 
-    public int getReleaseYear() {
-        return releaseYear;
+    public void setNome(String name) {
+        this.nome = name;
     }
 
-    public void setReleaseYear(int releaseYear) {
-        this.releaseYear = releaseYear;
+    public int getAnoDeLancamento() {
+        return anoDeLancamento;
     }
 
-    public boolean isIncludedInPlan() {
-        return includedInPlan;
+    public void setAnoLancamento(int releaseYear) {
+        this.anoDeLancamento = releaseYear;
     }
 
-    public void setIncludedInPlan(boolean includedInPlan) {
-        this.includedInPlan = includedInPlan;
+    public boolean isIncluidoNoPlano() {
+        return incluidoNoPlano;
     }
 
-    public double getSumOfEvaluations() {
-        return sumOfEvaluations;
+    public void setIncluidoNoPlano(boolean incluidoNoPlano) {
+        this.incluidoNoPlano = incluidoNoPlano;
     }
 
-    public int getTotalEvaluations(){
-        return totalEvaluations;
+    public double getSomaDasAvalicoes() {
+        return somaDasAvalicoes;
     }
 
-    public int getDurationInMinutes() {
-        return durationInMinutes;
+    public int getTotalDeAvaliacao(){
+        return totalDeAvaliacao;
     }
 
-    public void setDurationInMinutes(int durationInMinutes) {
-        this.durationInMinutes = durationInMinutes;
+    public int getDuracaoEmMinutos() {
+        return duracaoEmMinutos;
     }
 
-    public void showDataSheet(){
-        System.out.println("Nome do filme: " + this.name);
-        System.out.println("Ana de lançamento: " + this.releaseYear);
+    public void setDuracaoEmMinutos(int durationInMinutes) {
+        this.duracaoEmMinutos = durationInMinutes;
     }
 
-    public void evaluateMovie(double nota){
-        this.sumOfEvaluations += nota;
-        this.totalEvaluations++;
+    public void mostrarFichaDeDados(){
+        System.out.println("Nome do filme: " + this.nome);
+        System.out.println("Ana de lançamento: " + this.anoDeLancamento);
+    }
+
+    public void avaliarFilme(double nota){
+        this.somaDasAvalicoes += nota;
+        this.totalDeAvaliacao++;
     }
 
     public double pegaMedia(){
-        return this.sumOfEvaluations / this.totalEvaluations;
+        return this.somaDasAvalicoes / this.totalDeAvaliacao;
+    }
+
+    @Override
+    public int compareTo(Titulo outroTitulo) {
+        return this.getNome().compareTo(outroTitulo.getNome());
+        //Ordenado por nome.
+
+        //return Integer.compare(this.getAnoDeLancamento(), outroTitulo.getAnoDeLancamento());
+        //Ordenado por Ano de lançamento.
     }
 }
